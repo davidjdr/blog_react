@@ -2,30 +2,39 @@ import React, { Component } from 'react';
 
 class App extends Component {
   
-  ponerFilas = () => [
+  constructor() {
+    super();
+    this.state = {
+      usuarios: [
+        {
+          nombre: 'David',
+          correo: 'david@correo.com',
+          enlace: 'google.com'
+        },
+        {
+          nombre: 'Platzi',
+          correo: 'platzi@platzi.com',
+          enlace: 'google.com'
+        }
+      ]
+    }
+  }
+
+  ponerFilas = () => (
+    this.state.usuarios.map((usuario) => (
       <tr>
         <td>
-          Rodolfo
+          {usuario.nombre}
         </td>
         <td>
-          rodolfo@saldivar.com
+          {usuario.correo}
         </td>
         <td>
-          Rodolfo.com
-        </td>
-      </tr>,
-      <tr>
-        <td>
-          Platzi
-        </td>
-        <td>
-          platzi@platzi.com
-        </td>
-        <td>
-          platzi.com
+          {usuario.enlace}
         </td>
       </tr>
-  ]
+    ))
+  );
   
   render () {
     return (
