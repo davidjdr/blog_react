@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class App extends Component {
   
@@ -6,31 +7,28 @@ class App extends Component {
     super();
     this.state = {
       usuarios: [
-        {
-          nombre: 'David',
-          correo: 'david@correo.com',
-          enlace: 'google.com'
-        },
-        {
-          nombre: 'Platzi',
-          correo: 'platzi@platzi.com',
-          enlace: 'google.com'
-        }
       ]
     }
   }
 
+  async componentDidMount() {
+    const respuesta = await axios.get('https://jsonplaceholder.typicode.com/users');
+    this.setState({
+      usuarios: respuesta.data
+    })
+  }
+
   ponerFilas = () => (
     this.state.usuarios.map((usuario) => (
-      <tr>
+      <tr key={usuario.id} >
         <td>
-          {usuario.nombre}
+          {usuario.name}
         </td>
         <td>
-          {usuario.correo}
+          {usuario.email}
         </td>
         <td>
-          {usuario.enlace}
+          {usuario.website}
         </td>
       </tr>
     ))
